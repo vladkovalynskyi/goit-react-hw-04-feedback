@@ -2,22 +2,19 @@ import React from "react";
 import PropTypes from 'prop-types';
 import css from './FeedbackOptions.module.css'
 
-export default function Section({options, onLeaveFeedback}) {
+export default function FeedbackOptions({ options, onLeaveFeedback }) {
     return (
         <div className={css.list}>
-            {options.map(key => {
-                return (
-                    <button className={css.item} key={key} type="button" onClick={() => onLeaveFeedback(key)}>
-                        {[key]}
-                    </button>
-                )
-            })}
+            {options.map(option => (
+                <button className={css.item} key={option} type="button" onClick={() => onLeaveFeedback(option)}>
+                    {option}
+                </button>
+            ))}
         </div>
     )
 }
 
-Section.propTypes = {
-    options: PropTypes.arrayOf(PropTypes.oneOf(['good', 'neutral', 'bad']))
-    .isRequired,
+FeedbackOptions.propTypes = {
+    options: PropTypes.arrayOf(PropTypes.oneOf(['good', 'neutral', 'bad'])).isRequired,
     onLeaveFeedback: PropTypes.func.isRequired
 };
